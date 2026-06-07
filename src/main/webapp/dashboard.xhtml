@@ -3,16 +3,193 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="jakarta.faces.html"
       xmlns:f="jakarta.faces.core"
-      xmlns:ui="jakarta.faces.facelets"
-      
-      
-      >
+      xmlns:ui="jakarta.faces.facelets">
     <h:head>
-        <title>Dashboard</title>
+        <title>Dashboard — BlogApp</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <style>
+            *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+            body {
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                background: #fafafa;
+                color: #18181b;
+                min-height: 100vh;
+            }
+
+            /* ── Navigation ── */
+            nav {
+                background: #ffffff;
+                border-bottom: 1px solid #e4e4e7;
+                height: 56px;
+                padding: 0 32px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .nav-brand {
+                font-size: 15px;
+                font-weight: 700;
+                letter-spacing: -0.3px;
+            }
+
+            .nav-right {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+            }
+
+            .nav-email {
+                font-size: 13px;
+                color: #71717a;
+            }
+
+            .nav-right form {
+                margin: 0;
+            }
+
+            .btn-ghost {
+                padding: 6px 14px;
+                background: transparent;
+                border: 1px solid #e4e4e7;
+                border-radius: 7px;
+                font-size: 13px;
+                font-weight: 500;
+                color: #3f3f46;
+                cursor: pointer;
+                font-family: inherit;
+                transition: border-color 0.15s, color 0.15s;
+            }
+
+            .btn-ghost:hover {
+                border-color: #a1a1aa;
+                color: #18181b;
+            }
+
+            /* ── Main content ── */
+            main {
+                max-width: 840px;
+                margin: 0 auto;
+                padding: 52px 32px;
+            }
+
+            .page-header {
+                margin-bottom: 36px;
+            }
+
+            .page-header h1 {
+                font-size: 26px;
+                font-weight: 700;
+                letter-spacing: -0.7px;
+            }
+
+            .page-header p {
+                font-size: 14px;
+                color: #71717a;
+                margin-top: 6px;
+            }
+
+            .toolbar {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 24px;
+            }
+
+            .section-label {
+                font-size: 13px;
+                font-weight: 600;
+                color: #3f3f46;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+
+            .btn-new {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                padding: 8px 16px;
+                background: #18181b;
+                color: #ffffff;
+                border: none;
+                border-radius: 7px;
+                font-size: 13px;
+                font-weight: 500;
+                cursor: pointer;
+                font-family: inherit;
+                transition: background 0.15s;
+            }
+
+            .btn-new:hover {
+                background: #3f3f46;
+            }
+
+            /* ── Empty state ── */
+            .empty-state {
+                background: #ffffff;
+                border: 1px dashed #d4d4d8;
+                border-radius: 12px;
+                padding: 64px 32px;
+                text-align: center;
+            }
+
+            .empty-icon {
+                width: 40px;
+                height: 40px;
+                background: #f4f4f5;
+                border-radius: 10px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 20px;
+                margin-bottom: 16px;
+            }
+
+            .empty-state h3 {
+                font-size: 15px;
+                font-weight: 600;
+                margin-bottom: 6px;
+            }
+
+            .empty-state p {
+                font-size: 14px;
+                color: #71717a;
+                max-width: 280px;
+                margin: 0 auto;
+                line-height: 1.6;
+            }
+        </style>
     </h:head>
     <h:body>
-        <div>Dashboard</div>
-        welcome .....
+
+        <nav>
+            <span class="nav-brand">BlogApp</span>
+            <div class="nav-right">
+                <span class="nav-email">#{userSession.user.email}</span>
+                <h:form>
+                    <h:commandButton value="Sign out" action="#{authController.logout()}" styleClass="btn-ghost"/>
+                </h:form>
+            </div>
+        </nav>
+
+        <main>
+            <div class="page-header">
+                <h1>Your posts</h1>
+                <p>Write, edit, and manage your blog content</p>
+            </div>
+
+            <div class="toolbar">
+                <span class="section-label">All posts</span>
+                <button class="btn-new" type="button">+ New post</button>
+            </div>
+
+            <div class="empty-state">
+                <div class="empty-icon">&#9998;</div>
+                <h3>Nothing here yet</h3>
+                <p>Create your first post and it will show up here</p>
+            </div>
+        </main>
+
     </h:body>
 </html>

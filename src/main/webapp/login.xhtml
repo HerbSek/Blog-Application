@@ -3,25 +3,160 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="jakarta.faces.html"
       xmlns:f="jakarta.faces.core"
-      xmlns:ui="jakarta.faces.facelets"
-      
-      
-      >
+      xmlns:ui="jakarta.faces.facelets">
     <h:head>
-        <title>Login</title>
+        <title>Sign in — BlogApp</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <style>
+            *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+            body {
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                background: #fafafa;
+                color: #18181b;
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .card {
+                background: #ffffff;
+                border: 1px solid #e4e4e7;
+                border-radius: 14px;
+                padding: 44px 40px;
+                width: 100%;
+                max-width: 400px;
+                box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+            }
+
+            .brand {
+                font-size: 15px;
+                font-weight: 700;
+                letter-spacing: -0.3px;
+                margin-bottom: 36px;
+                color: #18181b;
+            }
+
+            .card h1 {
+                font-size: 22px;
+                font-weight: 700;
+                letter-spacing: -0.6px;
+                margin-bottom: 6px;
+            }
+
+            .subtitle {
+                font-size: 14px;
+                color: #71717a;
+                margin-bottom: 32px;
+            }
+
+            .field {
+                margin-bottom: 18px;
+            }
+
+            .field label {
+                display: block;
+                font-size: 13px;
+                font-weight: 500;
+                color: #3f3f46;
+                margin-bottom: 6px;
+            }
+
+            .field input {
+                display: block;
+                width: 100%;
+                padding: 9px 12px;
+                border: 1px solid #d4d4d8;
+                border-radius: 7px;
+                font-size: 14px;
+                color: #18181b;
+                background: #ffffff;
+                outline: none;
+                font-family: inherit;
+                transition: border-color 0.15s, box-shadow 0.15s;
+            }
+
+            .field input:focus {
+                border-color: #18181b;
+                box-shadow: 0 0 0 3px rgba(24, 24, 27, 0.06);
+            }
+
+            .btn-primary {
+                display: block;
+                width: 100%;
+                padding: 10px 16px;
+                margin-top: 8px;
+                background: #18181b;
+                color: #ffffff;
+                border: none;
+                border-radius: 7px;
+                font-size: 14px;
+                font-weight: 500;
+                cursor: pointer;
+                font-family: inherit;
+                transition: background 0.15s;
+            }
+
+            .btn-primary:hover {
+                background: #3f3f46;
+            }
+
+            .footer-link {
+                text-align: center;
+                font-size: 13px;
+                color: #71717a;
+                margin-top: 24px;
+            }
+
+            .footer-link a {
+                color: #18181b;
+                font-weight: 500;
+                text-decoration: none;
+            }
+
+            .footer-link a:hover {
+                text-decoration: underline;
+            }
+
+            .field-error {
+                display: block;
+                font-size: 12px;
+                color: #ef4444;
+                margin-top: 5px;
+                font-weight: 500;
+            }
+
+            /* Red border on the input when its sibling error message is present */
+            .field:has(.field-error) input {
+                border-color: #ef4444;
+            }
+
+            .field:has(.field-error) input:focus {
+                border-color: #ef4444;
+                box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.08);
+            }
+        </style>
     </h:head>
     <h:body>
-        <div>Login</div>
-        <h:form>
-
-            
-            <h:outputLabel value="Email" />
-            <h:inputText value="#{authController.user.email}" />
-            
-            <h:commandButton value="Save" action="#{authController.saveUser}" />
-        </h:form>
-        
-        
+        <div class="card">
+            <p class="brand">BlogApp</p>
+            <h1>Welcome back</h1>
+            <p class="subtitle">Sign in with your username to continue</p>
+            <h:form prependId="false">
+                <div class="field">
+                    <h:outputLabel value="Username" for="username"/>
+                    <h:inputText id="username"
+                                 value="#{authController.userNameInput}"
+                                 required="true"
+                                 requiredMessage="Username is required"/>
+                    <h:message for="username" styleClass="field-error"/>
+                </div>
+                <h:commandButton value="Continue →" action="#{authController.login()}" styleClass="btn-primary"/>
+            </h:form>
+            <p class="footer-link">
+                No account? <h:link value="Create one" outcome="signup"/>
+            </p>
+        </div>
     </h:body>
 </html>

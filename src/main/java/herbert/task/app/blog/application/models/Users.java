@@ -26,9 +26,12 @@ public class Users extends EntityModel {
     @Column(name = "EMAIL_ADDRESS", nullable=false, unique=true)
     private String email;
   
+    @Column(name = "ACCOUNT_VERIFIED")
+    private boolean accountVerified;
     
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade=CascadeType.ALL, orphanRemoval=true)
     private Token token;
+    
     
     
 
@@ -54,6 +57,14 @@ public class Users extends EntityModel {
 
     public void setToken(Token token) {
         this.token = token;
+    }
+
+    public boolean isAccountVerified() {
+        return accountVerified;
+    }
+
+    public void setAccountVerified(boolean accountVerified) {
+        this.accountVerified = accountVerified;
     }
 
    

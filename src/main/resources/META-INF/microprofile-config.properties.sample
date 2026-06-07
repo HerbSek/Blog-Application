@@ -1,0 +1,12 @@
+# ──────────────────────────────────────────────
+#  BlogApp — MicroProfile Config (SAMPLE)
+#
+#  Copy this file to microprofile-config.properties,
+#  fill in your values, and never commit the real file.
+# ──────────────────────────────────────────────
+
+# SMTP
+mail.smtp.host=smtp.gmail.com
+mail.smtp.port=465
+mail.smtp.user=your-email@gmail.com
+mail.smtp.password=your-app-password

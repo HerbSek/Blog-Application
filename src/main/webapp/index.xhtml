@@ -3,32 +3,286 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="jakarta.faces.html"
       xmlns:f="jakarta.faces.core"
-      xmlns:ui="jakarta.faces.facelets"
-      
-      
-      >
+      xmlns:ui="jakarta.faces.facelets">
     <h:head>
-        <title>Landing Page</title>
+        <title>BlogApp — Write without friction</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <style>
+            *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+            body {
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                background: #ffffff;
+                color: #18181b;
+            }
+
+            /* ── Nav ── */
+            nav {
+                height: 56px;
+                padding: 0 40px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border-bottom: 1px solid #f0f0f0;
+                position: sticky;
+                top: 0;
+                background: rgba(255,255,255,0.92);
+                backdrop-filter: blur(8px);
+                z-index: 10;
+            }
+
+            .nav-brand {
+                font-size: 15px;
+                font-weight: 700;
+                letter-spacing: -0.3px;
+                color: #18181b;
+                text-decoration: none;
+            }
+
+            .nav-links {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 13px;
+                font-weight: 500;
+                color: #3f3f46;
+                text-decoration: none;
+                padding: 6px 14px;
+                border-radius: 7px;
+                transition: background 0.15s, color 0.15s;
+            }
+
+            .nav-links a:hover {
+                background: #f4f4f5;
+                color: #18181b;
+            }
+
+            .nav-links a.btn-nav {
+                background: #18181b;
+                color: #ffffff;
+            }
+
+            .nav-links a.btn-nav:hover {
+                background: #3f3f46;
+            }
+
+            /* ── Hero ── */
+            .hero {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 100px 24px 80px;
+                background: #ffffff;
+            }
+
+            .hero-eyebrow {
+                display: inline-block;
+                font-size: 12px;
+                font-weight: 600;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: #71717a;
+                background: #f4f4f5;
+                border: 1px solid #e4e4e7;
+                border-radius: 99px;
+                padding: 4px 14px;
+                margin-bottom: 28px;
+            }
+
+            .hero h1 {
+                font-size: clamp(36px, 6vw, 56px);
+                font-weight: 800;
+                letter-spacing: -1.5px;
+                line-height: 1.1;
+                max-width: 640px;
+                color: #18181b;
+                margin-bottom: 20px;
+            }
+
+            .hero h1 em {
+                font-style: normal;
+                color: #71717a;
+            }
+
+            .hero-sub {
+                font-size: 16px;
+                color: #71717a;
+                line-height: 1.7;
+                max-width: 440px;
+                margin-bottom: 40px;
+            }
+
+            .hero-actions {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .btn-primary {
+                display: inline-block;
+                padding: 11px 26px;
+                background: #18181b;
+                color: #ffffff;
+                border-radius: 8px;
+                font-size: 14px;
+                font-weight: 600;
+                text-decoration: none;
+                transition: background 0.15s;
+                letter-spacing: -0.1px;
+            }
+
+            .btn-primary:hover {
+                background: #3f3f46;
+            }
+
+            .btn-secondary {
+                display: inline-block;
+                padding: 11px 26px;
+                background: transparent;
+                color: #3f3f46;
+                border-radius: 8px;
+                font-size: 14px;
+                font-weight: 500;
+                text-decoration: none;
+                transition: color 0.15s;
+            }
+
+            .btn-secondary:hover {
+                color: #18181b;
+            }
+
+            /* ── Feature strip ── */
+            .features {
+                border-top: 1px solid #f0f0f0;
+                background: #fafafa;
+                padding: 72px 40px;
+            }
+
+            .features-inner {
+                max-width: 840px;
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 40px;
+            }
+
+            .feature {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .feature-icon {
+                width: 36px;
+                height: 36px;
+                background: #ffffff;
+                border: 1px solid #e4e4e7;
+                border-radius: 9px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 17px;
+                margin-bottom: 4px;
+            }
+
+            .feature h3 {
+                font-size: 14px;
+                font-weight: 600;
+                letter-spacing: -0.2px;
+            }
+
+            .feature p {
+                font-size: 13px;
+                color: #71717a;
+                line-height: 1.65;
+            }
+
+            /* ── Footer ── */
+            footer {
+                border-top: 1px solid #f0f0f0;
+                padding: 28px 40px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .footer-brand {
+                font-size: 13px;
+                font-weight: 700;
+                color: #18181b;
+            }
+
+            .footer-note {
+                font-size: 12px;
+                color: #a1a1aa;
+            }
+
+            @media (max-width: 640px) {
+                nav { padding: 0 20px; }
+                .features { padding: 52px 20px; }
+                .features-inner { grid-template-columns: 1fr; gap: 32px; }
+                footer { flex-direction: column; gap: 8px; text-align: center; }
+            }
+        </style>
     </h:head>
     <h:body>
-        <div>Landing page</div>
-      
-        <div>
-            <h:panelGroup>
-                <h:outputLabel value="Sign up" />
-                <h:link value="Go to" outcome="#{request.contextPath}/signup.xhtml" />
-            </h:panelGroup>
-            
-            
-            <h:panelGroup>
-                <h:outputLabel value="Login" />
-                <h:link value="Go to" outcome="#{request.contextPath}/login.xhtml" />
-            </h:panelGroup>
-            
-        </div>
-        
-        
-        
+
+        <!-- Nav -->
+        <nav>
+            <span class="nav-brand">BlogApp</span>
+            <div class="nav-links">
+                <h:link value="Sign in" outcome="login" styleClass=""/>
+                <h:link value="Get started" outcome="signup" styleClass="btn-nav"/>
+            </div>
+        </nav>
+
+        <!-- Hero -->
+        <section class="hero">
+            <span class="hero-eyebrow">Open · Minimal · Yours</span>
+            <h1>Write without <em>friction.</em></h1>
+            <p class="hero-sub">
+                A clean space to publish your thoughts.
+                No ads, no noise — just you and your words.
+            </p>
+            <div class="hero-actions">
+                <h:link value="Get started →" outcome="signup" styleClass="btn-primary"/>
+                <h:link value="Sign in" outcome="login" styleClass="btn-secondary"/>
+            </div>
+        </section>
+
+        <!-- Feature strip -->
+        <section class="features">
+            <div class="features-inner">
+                <div class="feature">
+                    <div class="feature-icon">&#9998;</div>
+                    <h3>Write</h3>
+                    <p>A distraction-free editor that stays out of your way while you think.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">&#128274;</div>
+                    <h3>Secure by default</h3>
+                    <p>Magic-link login with single-use tokens. No passwords to forget or leak.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">&#127760;</div>
+                    <h3>Publish instantly</h3>
+                    <p>Your post is live the moment you hit publish. No pipelines, no waiting.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <span class="footer-brand">BlogApp</span>
+            <span class="footer-note">Built with Jakarta EE</span>
+        </footer>
+
     </h:body>
 </html>

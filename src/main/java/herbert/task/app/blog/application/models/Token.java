@@ -10,6 +10,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
+import java.util.UUID;
+
 
 /**
  *
@@ -22,35 +24,42 @@ public class Token extends EntityModel{
 
     
     @Column(name = "TOKEN")
-    private Long token;
+    private String token;
      
-    @Column(name = "EXPIRY")
-    private boolean expired; 
+    @Column(name = "VALID")
+    private boolean valid; 
      
     @Column(name = "EXPIRY_TIME")
-    private LocalDateTime  expiryTime; 
+    private LocalDateTime expiryTime; 
 
     @OneToOne
     @JoinColumn(name = "USER_ID")
     private Users user;
     
     
-     public Long getToken() {
+//    @PrePersist
+//    public void init3(){
+//        setToken(UUID.randomUUID().toString());
+//    }
+    
+    
+     public String getToken() {
         return token;
     }
 
-    public void setToken(Long token) {
+    public void setToken(String token) {
         this.token = token;
     }
 
-    public boolean isExpired() {
-        return expired;
+    public boolean isValid() {
+        return valid;
     }
 
-    public void setExpired(boolean expired) {
-        this.expired = expired;
+    public void setValid(boolean valid) {
+        this.valid = valid;
     }
-
+   
+    
     public LocalDateTime getExpiryTime() {
         return expiryTime;
     }

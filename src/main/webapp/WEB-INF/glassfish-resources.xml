@@ -7,7 +7,7 @@
         <property name="databaseName" value="postgres"/>
         <property name="User" value="postgres.wlhwslyasjbjdgechjna"/>
         <property name="Password" value="Sekpey0102003#"/>
-        <property name="URL" value="jdbc:postgresql://aws-1-eu-west-2.pooler.supabase.com:6543/postgres"/>
+        <property name="URL" value="jdbc:postgresql://aws-1-eu-west-2.pooler.supabase.com:6543/postgres?prepareThreshold=0"/>
         <property name="driverClass" value="org.postgresql.Driver"/>
         <property name="statement-cache-size" value="0"/>
     </jdbc-connection-pool>
