@@ -148,3 +148,10 @@ These files contain secrets and are excluded from version control. Committed sam
 | `WEB-INF/glassfish-resources.xml` | `WEB-INF/glassfish-resources.xml.sample` |
 | `META-INF/microprofile-config.properties` | `META-INF/microprofile-config.properties.sample` |
 
+
+<img width="1907" height="970" alt="Screenshot 2026-06-07 111925" src="https://github.com/user-attachments/assets/e3eb6b45-6f24-4081-ba6f-b98d042844bd" />
+
+<img width="1542" height="811" alt="Screenshot 2026-06-07 112912" src="https://github.com/user-attachments/assets/67976e71-0b78-41bb-b0a6-fdda9a550dac" />
+
+<img width="1891" height="899" alt="Screenshot 2026-06-07 113033" src="https://github.com/user-attachments/assets/9c6e0a25-b69d-4f5d-821e-3de5aae33b3b" />
+
