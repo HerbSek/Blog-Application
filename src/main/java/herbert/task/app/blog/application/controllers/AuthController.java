@@ -75,7 +75,7 @@ public class AuthController implements ControllerInterface{
         findUser.getToken().setValid(true);
         findUser = (Users) blogService.update(findUser);
         String tokenUrl = baseUrl + "/v1/auth/verify-token" + "?token=" + findUser.getToken().getToken();
-        sendEmail.sendSmtpEmail(findUser.getEmail(), "TEST TOKEN SIGNUP", tokenUrl + " (Expires in 5 mins)");
+        sendEmail.sendVerificationEmail(findUser.getEmail(), tokenUrl);
         redirectToCheckEmail(findUser.getEmail(), "signup");
         return;
      }
@@ -91,7 +91,7 @@ public class AuthController implements ControllerInterface{
     save(); 
     
     String tokenUrl = baseUrl + "/v1/auth/verify-token" + "?token=" + token.getToken();
-    sendEmail.sendSmtpEmail(user.getEmail(), "TEST TOKEN SIGNUP", tokenUrl + " (Expires in 5 mins)");
+    sendEmail.sendVerificationEmail(user.getEmail(), tokenUrl);
     redirectToCheckEmail(user.getEmail(), "signup");
   }
   
@@ -125,7 +125,7 @@ public class AuthController implements ControllerInterface{
     findUser = (Users) blogService.update(findUser);
     
     String tokenUrl = baseUrl + "/v1/auth/verify-token" + "?token=" + findUser.getToken().getToken();
-    sendEmail.sendSmtpEmail(findUser.getEmail(), "TEST TOKEN LOGIN", tokenUrl + " (Expires in 5 mins)");
+    sendEmail.sendLoginEmail(findUser.getEmail(), tokenUrl);
     redirectToCheckEmail(findUser.getEmail(), "login");
    }
  

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN" "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
+<!--
+    GlassFish JDBC Connection Pool — SAMPLE
+    ────────────────────────────────────────
+    Copy this file to glassfish-resources.xml and fill in your values.
+    Never commit the real file — it is listed in .gitignore.
+
+    prepareThreshold=0 in the URL is required to prevent the
+    "prepared statement already exists" error with PostgreSQL connection pools.
+-->
+<resources>
+    <jdbc-connection-pool
+        datasource-classname="org.postgresql.ds.PGSimpleDataSource"
+        name="your_pool_name"
+        res-type="javax.sql.DataSource"
+        max-pool-size="32"
+        steady-pool-size="8"
+        max-wait-time-in-millis="60000"
+        idle-timeout-in-seconds="300"
+        connection-creation-retry-attempts="0"
+        connection-creation-retry-interval-in-seconds="10"
+        is-connection-validation-required="false"
+        connection-validation-method="auto-commit"
+        wrap-jdbc-objects="false">
+
+        <property name="serverName"   value="your-db-host"/>
+        <property name="portNumber"   value="5432"/>
+        <property name="databaseName" value="your-db-name"/>
+        <property name="User"         value="your-db-user"/>
+        <property name="Password"     value="your-db-password"/>
+        <property name="URL"          value="jdbc:postgresql://your-db-host:5432/your-db-name?prepareThreshold=0"/>
+        <property name="driverClass"  value="org.postgresql.Driver"/>
+    </jdbc-connection-pool>
+
+    <jdbc-resource
+        enabled="true"
+        jndi-name="java:app/jdbc/BlogDataSource"
+        object-type="user"
+        pool-name="your_pool_name"/>
+</resources>
