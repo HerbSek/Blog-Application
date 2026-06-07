@@ -148,8 +148,3 @@ These files contain secrets and are excluded from version control. Committed sam
 | `WEB-INF/glassfish-resources.xml` | `WEB-INF/glassfish-resources.xml.sample` |
 | `META-INF/microprofile-config.properties` | `META-INF/microprofile-config.properties.sample` |
 
----
-
-## Related
-
-- [SECUREPASS_PLAN.md](./SECUREPASS_PLAN.md) — planned extraction of the token auth model into a standalone Jakarta EE SDK
